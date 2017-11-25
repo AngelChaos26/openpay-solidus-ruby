@@ -1,0 +1,3 @@
+class ConektaController < ApplicationController
+    
+end

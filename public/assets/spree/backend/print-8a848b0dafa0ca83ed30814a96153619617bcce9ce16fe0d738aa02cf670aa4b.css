@@ -1,0 +1,21 @@
+@media print {
+  /* line 2, /usr/local/rvm/gems/ruby-2.3.4/bundler/gems/solidus_conekta-599fc1149b33/app/assets/stylesheets/spree/backend/print.css.sass */
+  .conekta-oxxo {
+    width: 100px;
+  }
+
+  /* line 5, /usr/local/rvm/gems/ruby-2.3.4/bundler/gems/solidus_conekta-599fc1149b33/app/assets/stylesheets/spree/backend/print.css.sass */
+  .order-title, .order-footer, #top-nav-bar, #search-bar, #footer {
+    display: none;
+  }
+
+  /* line 8, /usr/local/rvm/gems/ruby-2.3.4/bundler/gems/solidus_conekta-599fc1149b33/app/assets/stylesheets/spree/backend/print.css.sass */
+  .print {
+    border: 1px solid black;
+  }
+
+  /* line 11, /usr/local/rvm/gems/ruby-2.3.4/bundler/gems/solidus_conekta-599fc1149b33/app/assets/stylesheets/spree/backend/print.css.sass */
+  .title {
+    border-bottom: 1px solid black;
+  }
+}
