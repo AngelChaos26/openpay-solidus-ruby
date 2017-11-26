@@ -3,6 +3,41 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
+  def costumer_openpay
+    customer = Conekta::Customer.create({
+      "name": "customer name",
+      "email": "customer_email@me.com",
+      "requires_account": false 
+    })
+  end
+  
+  def order_openpay(token_id, device_session_id)
+    puts token_id
+    puts device_session_id
+    
+    customer_hash={
+    "name" => "Juan",
+    "last_name" => "Vazquez Juarez",
+    "phone_number" => "4423456723",
+    "email" => "juan.vazquez@empresa.com.mx"
+    }
+
+    request_hash={
+    "method" => "card",
+    "source_id" => token_id.to_s,
+    "amount" => 100.00,
+    "currency" => "MXN",
+    "description" => "Cargo inicial a mi merchant",
+    "order_id" => "oid-00051",
+    "device_session_id" => device_session_id.to_s,
+    "customer" => customer_hash
+    }
+    
+    order = Conekta::Charge.create(request_hash.to_hash)
+    
+    puts "ID: #{order.id}"
+  end
+  
   def costumer_conekta
     customer = Conekta::Customer.create({
     :name => 'Waldo',

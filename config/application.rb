@@ -10,9 +10,9 @@ Bundler.require(*Rails.groups)
 module Workspace
   class Application < Rails::Application
     #Conekta
-    Conekta.api_key = "key_BUbyGdurU87mFfjgPmsKHw"
+    #Conekta.api_key = "key_BUbyGdurU87mFfjgPmsKHw"
     #Openpay
-    #Conekta.api_key = "sk_2853187090f64263912af082466c0f5b"
+    Conekta.api_key = "sk_2853187090f64263912af082466c0f5b"
     config.to_prepare do
       # Load application's model / class decorators
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|

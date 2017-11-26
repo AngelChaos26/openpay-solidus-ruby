@@ -73,6 +73,6 @@
     $('#pay-button').on('click', function(event) {
         event.preventDefault();
         $("#pay-button").prop( "disabled", true);
-        OpenPay.token.extractFormAndCreate('payment-form', success_callbak, error_callbak);              
+        OpenPay.token.extractFormAndCreate('payment-form', success_callbak, error_callbak);
     });
 </script>

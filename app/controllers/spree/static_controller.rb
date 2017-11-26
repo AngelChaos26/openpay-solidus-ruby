@@ -13,9 +13,15 @@ class Spree::StaticController < Spree::StoreController
         #'email' => $_POST["email"],);
         
         #order_conekta
-        costumer_conekta
+        #costumer_conekta
         
-        #order_openpay(params[:token_id], params[:deviceIdHiddenFieldName])
+        order_openpay(params[:token_id], params[:deviceIdHiddenFieldName])
+        #costumer_openpay
+        
+        #respond_to do |format|
+        #    format.html 
+        #    format.json { render json: @entry }
+        #end
 	end
 end
 end
