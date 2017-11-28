@@ -12,23 +12,21 @@ class ApplicationController < ActionController::Base
   end
   
   def order_openpay(token_id, device_session_id)
-    puts token_id
-    puts device_session_id
-    
+    begin
     customer_hash={
-    "name" => "Juan",
-    "last_name" => "Vazquez Juarez",
+    "name" => "Waldo",
+    "last_name" => "Backend",
     "phone_number" => "4423456723",
-    "email" => "juan.vazquez@empresa.com.mx"
+    "email" => "waldo.back@empresa.com.mx"
     }
 
     request_hash={
     "method" => "card",
     "source_id" => token_id.to_s,
-    "amount" => 100.00,
+    "amount" => 400.00,
     "currency" => "MXN",
-    "description" => "Cargo inicial a mi merchant",
-    "order_id" => "oid-00051",
+    "description" => "Prueba de charge en Openpay",
+    "order_id" => "oid-00057",
     "device_session_id" => device_session_id.to_s,
     "customer" => customer_hash
     }
@@ -36,6 +34,19 @@ class ApplicationController < ActionController::Base
     order = Conekta::Charge.create(request_hash.to_hash)
     
     puts "ID: #{order.id}"
+    rescue Conekta::ParameterValidationError => e
+      puts "Conekta::ParameterValidationError"
+      puts e.message_to_purchaser
+      #alguno de los parámetros fueron inválidos
+    rescue Conekta::ProcessingError => e
+      puts "Conekta::ProcessingError"
+      puts e.message_to_purchaser
+      #la tarjeta no pudo ser procesada
+    rescue Conekta::Error => e
+      puts "Conekta::Error"
+      puts e.message
+      #un error ocurrió que no sucede en el flujo normal de cobros como por ejemplo un auth_key incorrecto
+    end
   end
   
   def costumer_conekta

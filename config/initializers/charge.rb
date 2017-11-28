@@ -6,7 +6,7 @@ Conekta::Charge.class_eval do
 
     def initialize(id=nil)
       @id = id
-      @customer ||= List.new("Customer", {})
+      #@customer ||= List.new("Customer", {})
       super(id)
     end
 
@@ -16,8 +16,8 @@ Conekta::Charge.class_eval do
       end
 
       charge     = self
-      submodels = [:customer]
-      create_submodels_lists(charge, submodels)
+      #submodels = [:customer]
+      #create_submodels_lists(charge, submodels)
     end
     
     #Attribute accessors
