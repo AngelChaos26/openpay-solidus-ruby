@@ -1,5 +1,5 @@
 Spree::Conekta::PaymentsController.class_eval do
-    before_action :test 
+    #before_action :test 
     
     def create
       PaymentNotificationHandler.new(params).perform_action if params['type'] == 'charge.paid'
