@@ -31,6 +31,24 @@ Spree.current_order_id = "<%= @order.number %>"
 Spree.current_order_token = "<%= @order.guest_token %>"
 </script>
 
+<% @order.payments.valid.each do |payment| %>
+  <% if payment.payment_method.type == "Spree::BillingIntegration::ConektaGateway::Card" %>
+    <script type="text/javascript"
+        src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
+    <script type='text/javascript'
+      src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
+    <script type="text/javascript" >
+      $(document).ready(function() {
+        OpenPay.setId('mdcaauf5on1ncwtroibb');
+        OpenPay.setApiKey('<%= payment.payment_method.preferred_public_auth_token -%>');
+        OpenPay.setSandboxMode(true);
+        
+        var deviceSessionId = OpenPay.deviceData.setup("<%= "checkout_form_#{@order.state}" %>", "deviceIdHiddenFieldName");
+      });
+    </script>
+  <% end %>
+<% end %>
+
 <% if I18n.locale != :en %>
   <%= javascript_include_tag 'jquery.validate/localization/messages_' + I18n.locale.to_s.downcase.gsub('-', '') %>
 <% end %>
